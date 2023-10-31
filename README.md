@@ -9,30 +9,31 @@ Please install vitest -> https://www.robinwieruch.de/vitest-react-testing-librar
 3. npm install jsdom --save-dev
 4. In ..vite.config.js:
 
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  **test: {**
-    **environment: 'jsdom',**
-  **},**
-});
+    import { defineConfig } from 'vite';
+    import react from '@vitejs/plugin-react';
+    // https://vitejs.dev/config/
+    export default defineConfig({
+      plugins: [react()],
+      **test: {**
+        **environment: 'jsdom',**
+      **},**
+    });
 
 5. npm install @testing-library/react @testing-library/jest-dom --save-dev
 
-6. In ..vite.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+6. In ..vite.config.js:
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    **globals: true,**
-    environment: 'jsdom',
-    **setupFiles: './tests/setup.js',**
-  },
-});
+    import { defineConfig } from 'vite';
+    import react from '@vitejs/plugin-react';
+
+    // https://vitejs.dev/config/
+    export default defineConfig({
+        plugins: [react()],
+        test: {
+            **globals: true,**
+            environment: 'jsdom',
+            **setupFiles: './tests/setup.js',**
+        },
+      });
 
 
