@@ -6,7 +6,8 @@ describe("App", () => {
     it("should render component", () => {
         const component = render(<App />);
         expect(component).toBeDefined();
-        const title = component.getByText("PRUEBA TEST");
-        expect(title).toBe("asdasd para que fallee");
+        // codigo para que falle el test
+        //const title = component.getByText("PRUEBA TEST");
+        //expect(title).toBe("asdasd para que fallee");
     });
 });
