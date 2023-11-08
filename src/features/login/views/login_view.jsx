@@ -14,20 +14,25 @@ const LoginView = () => {
   });
   const [emailError, setEmailError] = useState(false);
   const [pwdError, setPwdError] = useState(false);
+  const [empty, setEmpty] = useState(false);
   
 
   const handleChange = (e) => {
     const {name, value} = e.target;
 
-    if (name === "email" && !validEmail.test(value))
+    if (name === "email" && !validEmail.test(value)) {
       setEmailError(true);
-    else
+      setEmpty(false);
+    } else {
       setEmailError(false);
+    }
 
-    if (name === "pass" && !validPassword.test(value))
+    if (name === "pass" && !validPassword.test(value)) {
       setPwdError(true);
-    else
+      setEmpty(false);
+    } else {
       setPwdError(false);
+    }
 
     setForm({
       ...form,
@@ -47,11 +52,14 @@ const LoginView = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.name, e.target.value);
+    const { email, pass } = Object.fromEntries(new FormData(e.target));
 
     if (emailError || pwdError) {
       resetForm();
+      alert('Email o contraseña inválidos')
     }
+    else if (email === '' || pass === '')
+      setEmpty(true);
     else
       login(form.email, form.pass);
   }
@@ -59,7 +67,7 @@ const LoginView = () => {
   return (
     <>
       <div>
-        <h1>Log in</h1>
+        <h1 className="text-3xl font-bold underline">Log in</h1>
       </div>
       <div>
         <form onSubmit={handleSubmit}>
@@ -78,6 +86,9 @@ const LoginView = () => {
               } 
           </div>
            <button>Iniciar Sesión</button>
+           <div>
+              {empty && <p>Los campos no pueden estar vacíos</p>}
+           </div>
         </form>
       </div>
     </>
