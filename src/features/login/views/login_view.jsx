@@ -69,25 +69,22 @@ const LoginView = () => {
 
   return (
     <>
-            <div className="flex flex-col justify-center items-center w-screen min-h-screen">
-
-       <Card className="w-[400px]">
+      <div className="flex flex-col justify-center items-center w-screen min-h-screen">
+        <Card className="w-[400px]">
           <CardHeader className="flex justify-center gap-3">
             <h1 className="text-3xl font-bold ">Log in</h1>
           </CardHeader>
 
           <Divider/>
 
-          <CardBody>
-            
-
-              <form onSubmit={handleSubmit}>
+          <CardBody>      
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-col w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-3">
                 <Input size="md" name="email" type="email" label="Email" onChange={handleChange} value={form.email} placeholder="Enter your email" />
                 <div>
-                {emailError ? <p>email incorrecto!</p> : <span></span>} 
+                  {emailError ? <p>email incorrecto!</p> : <span></span>} 
                 </div>
-                
+                  
                 <Input size="md" name="pass" type="password" label="Password" onChange={handleChange} value={form.pass} placeholder="Enter your password" />
                 <div>
                   {pwdError ? <p>
@@ -102,18 +99,15 @@ const LoginView = () => {
                 <div class="text-primary-500">
                     {empty && <p>Los campos no pueden estar vacíos</p>}
                 </div>
-                </div>
-              </form>
-
+              </div>
+            </form>
           </CardBody>
 
           <CardFooter>
           </CardFooter>
-       </Card>
-       </div>
-
-      </>
-
+        </Card>
+      </div>
+    </>
   )
 }
 
