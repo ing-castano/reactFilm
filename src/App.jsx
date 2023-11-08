@@ -3,6 +3,8 @@ import {environment} from "@environments";
 import { RouterProvider } from 'react-router-dom';
 import { appRouter } from './core/routes/app_router';
 import RootProvider from './core/providers/root_provider';
+import {NextUIProvider} from "@nextui-org/react";
+
 
 const App = () => {
   return (
@@ -12,9 +14,13 @@ const App = () => {
       <h2>PRUEBA TEST</h2>
     */}
     {/*<h2>{environment.title}</h2>*/}
-    <RootProvider>
-      <RouterProvider router={appRouter} />
-    </RootProvider>
+    <NextUIProvider>
+      <main className="dark text-foreground bg-background">
+        <RootProvider>
+          <RouterProvider router={appRouter} />
+        </RootProvider>
+      </main >
+    </NextUIProvider>
     </>
   )
 }

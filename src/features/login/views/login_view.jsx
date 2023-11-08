@@ -4,6 +4,9 @@ import HomeView from '../../home/views/home_view';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { validEmail, validPassword } from '../../../core/regex/regex';
+import {Button} from "@nextui-org/button";
+import {Card, CardHeader, CardBody, CardFooter, Divider, Input} from "@nextui-org/react";
+
 
 const LoginView = () => {
 
@@ -66,32 +69,51 @@ const LoginView = () => {
 
   return (
     <>
-      <div>
-        <h1 className="text-3xl font-bold underline">Log in</h1>
-      </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input name='email' type='email' onChange={handleChange} value={form.email} placeholder='email@something.com' />
-          <div>
-          {emailError ? <p>email incorrecto!</p> : <span></span>} 
-          </div>
+            <div className="flex flex-col justify-center items-center w-screen min-h-screen">
 
-          <input name='pass' type='password' onChange={handleChange} value={form.pass} placeholder='your password'/>
-          <div>
-            {pwdError ? <p>
-              mínimo 6 caracteres <br /> 
-              Por lo menos una letra mayúscula <br /> 
-              Por lo menos una letra minúscula <br /> 
-              Por lo menos un caracter especial </p> : <span></span>
-              } 
-          </div>
-           <button>Iniciar Sesión</button>
-           <div>
-              {empty && <p>Los campos no pueden estar vacíos</p>}
-           </div>
-        </form>
-      </div>
-    </>
+       <Card className="w-[400px]">
+          <CardHeader className="flex justify-center gap-3">
+            <h1 className="text-3xl font-bold ">Log in</h1>
+          </CardHeader>
+
+          <Divider/>
+
+          <CardBody>
+            
+
+              <form onSubmit={handleSubmit}>
+              <div className="flex flex-col w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-3">
+                <Input size="md" name="email" type="email" label="Email" onChange={handleChange} value={form.email} placeholder="Enter your email" />
+                <div>
+                {emailError ? <p>email incorrecto!</p> : <span></span>} 
+                </div>
+                
+                <Input size="md" name="pass" type="password" label="Password" onChange={handleChange} value={form.pass} placeholder="Enter your password" />
+                <div>
+                  {pwdError ? <p>
+                    mínimo 6 caracteres <br /> 
+                    Por lo menos una letra mayúscula <br /> 
+                    Por lo menos una letra minúscula <br /> 
+                    Por lo menos un caracter especial </p> : <span></span>
+                    } 
+                </div>
+
+                <Button color="primary" variant="solid" type='submit'>Iniciar Sesión</Button>
+                <div class="text-primary-500">
+                    {empty && <p>Los campos no pueden estar vacíos</p>}
+                </div>
+                </div>
+              </form>
+
+          </CardBody>
+
+          <CardFooter>
+          </CardFooter>
+       </Card>
+       </div>
+
+      </>
+
   )
 }
 
