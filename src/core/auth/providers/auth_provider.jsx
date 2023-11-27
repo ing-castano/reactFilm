@@ -49,7 +49,7 @@ export const AuthProvider = ({children, fallback}) => {
     }, []);
 
     // login y logout son promesas puesto que normalmente le voy a pedir datos al backend
-    const login = async () => {
+    const login = async ( user, password ) => {
         setIsLoggedIn(true);
         saveLoginState(true);
     };
