@@ -1,6 +1,8 @@
-import { TMDB_API, TMDB_IMG_API } from "./tmdb_api";
+//import { TMDB_API } from "./tmdb_api";
 
 
+
+/*
 export const fetchApiTMDB = async (url, query) => {
     try {
         const response = await TMDB_API.get(url, {
@@ -28,4 +30,5 @@ export const fetchApiImgTMDB = async (url, query) => {
         console.log('IMG: Proceso Terminado');
     }
 }
+*/
 

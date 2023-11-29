@@ -34,7 +34,7 @@ export const AppSwiper = ({children}) => {
     <swiper-container
       ref={swiperElRef}
       loop
-      slides-per-view="5"
+      slides-per-view="7"
       navigation="true"
       // pagination="true" //los puntitos de abajo para saber donde estamos
       >

@@ -12,6 +12,8 @@ import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination, Mousewheel, Autoplay} from 'swiper/modules';
 import tmdbImgServices from '../services/tmdb_img_services';
 import config from '../datasources/remotes/tmdb/tmdb_config';
+import AppTitle from './app_card_title/app_card_title';
+import AppSectionHeadings from './app_section_headings/app_section_headings';
 
 
 const {poster_sizes:{w342: posterSize}} = tmdbImgServices(); // pensado por si tmdb cambia la estructura del /configuration API
@@ -20,10 +22,13 @@ const SIZE = `h-auto w-auto`; // slice para sacarle la w
 
 
 
-const NewReleases = ({movies}) => {
+const NewReleases = ({title, data}) => {
 
     return (
         <>
+          <AppSectionHeadings>
+            {title}
+          </AppSectionHeadings> 
           <Swiper
             direction={'horizontal'}
             effect={'coverflow'}
@@ -47,10 +52,10 @@ const NewReleases = ({movies}) => {
             className="mySwiper"
           >
             {
-                movies.map((movie) => {
-                  let imageUrl = `${config.API_IMG_URL}/${posterSize}${movie.poster_path}`
+                data?.map((e) => {
+                  let imageUrl = `${e.poster}`
                   return (
-                    <SwiperSlide key={movie.id} className={SIZE}>
+                    <SwiperSlide key={e.id} className={SIZE}>
                       <img src={imageUrl} />
                     </SwiperSlide>
                   );
