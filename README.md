@@ -37,3 +37,11 @@ Please install vitest -> https://www.robinwieruch.de/vitest-react-testing-librar
       });
 ```
 
+## GitHub Actions on Vercel
+
+https://vercel.com/guides/how-can-i-use-github-actions-with-vercel
+
+## Environment Variables
+
+https://vitejs.dev/guide/env-and-mode.html
+
