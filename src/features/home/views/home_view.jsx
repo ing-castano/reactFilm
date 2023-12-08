@@ -147,7 +147,10 @@ const HomeView = () => {
         </ModalContent>
       </Modal>
       
-      <h1>{import.meta.env.VITE_APP_TEST}</h1>
+      <h1>{
+        console.log(import.meta.env.VITE_APP_TEST);
+        import.meta.env.VITE_APP_TEST}
+      </h1>
 
     </>
   )
