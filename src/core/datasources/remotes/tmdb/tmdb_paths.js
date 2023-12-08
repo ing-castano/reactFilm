@@ -25,7 +25,7 @@ export const TMDB_PATHS = {
                 w780: "w780",
                 original: "original"
             },
-            url: 'http://image.tmdb.org/t/p/',
+            url: 'https://image.tmdb.org/t/p/',
         },
         backdrop: {
             sizes: {
@@ -34,7 +34,7 @@ export const TMDB_PATHS = {
                 w1280: "w1280",
                 original: "original"
             },
-            url: 'http://image.tmdb.org/t/p/',
+            url: 'https://image.tmdb.org/t/p/',
         },
     },
     
