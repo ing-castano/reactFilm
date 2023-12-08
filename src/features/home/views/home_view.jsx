@@ -151,7 +151,6 @@ const HomeView = () => {
         console.log(import.meta.env.VITE_TEST)}
         {import.meta.env.VITE_TEST
         }
-        hola
       </h1>
 
     </>
