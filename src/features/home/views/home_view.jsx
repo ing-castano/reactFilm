@@ -16,6 +16,9 @@ import useFetch from '../../../core/hooks/useFetch';
 import Carousel from '../../../core/components/app_carousel_section/app_carousel_section';
 import AppCarousel from '../../../core/components/app_carousel_section/app_carousel_section';
 import AppCard from '../../../core/components/app_card/app_card';
+import AppModal from '../../../core/components/app_modal/app_modal';
+import { useModal } from '../../../core/components/app_modal/hook/use_modal';
+import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter, useDisclosure, Button} from "@nextui-org/react";
 
 
 const HomeView = () => {
@@ -26,6 +29,8 @@ const HomeView = () => {
   const { data: upComingM, error: upComingMError, isLoading: upComingMIsLoading, fetchData: fetchUpComingMovies } = useFetch(getUpcomingMovies);
   const { data: popularT, error: popularTError, isLoading: popularTIsLoadig, fetchData: fetchPopularTV } = useFetch(getPopularTv);
   const { data: topRatedT, error: topRatedTError, isLoading: topRatedTIsLoading, fetchData: fetchTopRatedTV } = useFetch(getTopRatedTv);
+  // const {isOpen, openModal, closeModal} = useModal(); // Modal a Mano
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
 
   useEffect(() => {
@@ -77,23 +82,73 @@ const HomeView = () => {
       </AppButton>
       <button onClick={logout}>Logout</button>
 
+      {/* Modal a Mano
+      <button onClick={openModal}>Abrir Modal</button>
+      <AppModal 
+        open={isOpen}
+        onClickedOut={closeModal}
+      >
+        <div 
+          style={{
+          height: '300px',
+          width: '300px',
+          backgroundColor: 'white',
+          color: 'red',
+        }}>
+            hola, soy un modal. podes cerrarme haciendo click afuera o en el boton.
+            <br></br>
+            <button onClick={closeModal}>Cerrar aca!</button>
+        </div>
+      </AppModal>
+      */}
+
+      <Button onPress={onOpen}>Open Modal</Button>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='2xl' scrollBehavior='inside' backdrop='blur'>
+        <ModalContent className='text-blue-200 bg-cyan-100'>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalBody>
+                <p> 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
+                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
+                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
+                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
+                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                </p>
+                <p>
+                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
+                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
+                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
+                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
+                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button color="primary" onPress={onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
       
-      <AppCard
-      config = {{
-        image: {
-          show: true,
-          src: `https://picsum.photos/150/200`,
-          alt: `hola`,
-        },
-        width: '150px',
-        height: '200px',
-      }}>
-        <AppCard.Header />
-        <AppCard.Body />
-        <AppCard.Footer>
-            <p className='text-center'>Play Trailer</p>
-        </AppCard.Footer>
-      </AppCard>
+      <h1>{import.meta.env.VITE_APP_TEST}</h1>
+
     </>
   )
 }

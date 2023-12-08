@@ -43,6 +43,10 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
           height: config.height,
           borderRadius: '15px',
           border: '2px solid white',
+          transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+          transition: 'all 150ms ease-in-out',
+          boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+          zIndex: 10,
           ...props.style,
         }}
       >

@@ -1,8 +1,28 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 export const AppSwiper = ({children}) => {
   const swiperElRef = useRef(null);
+  const [slidesPerView, SetSlidesPerView] = useState(7);
 
+  useEffect(()=>{
+    const resizeHandler = () => {
+      if (window.innerWidth < 768) {
+        SetSlidesPerView(3);
+      }
+      else if (window.innerWidth < 992){
+        SetSlidesPerView(5);
+      }
+      else {
+        SetSlidesPerView(7);
+      }
+    }
+
+      window.addEventListener("resize", resizeHandler);
+
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    }
+  },[])
   /* // useEffect
   useEffect(() => {
     
@@ -30,11 +50,12 @@ export const AppSwiper = ({children}) => {
   }, []);
   */
 
+
   return (
     <swiper-container
       ref={swiperElRef}
       loop
-      slides-per-view="7"
+      slides-per-view={slidesPerView}
       navigation="true"
       // pagination="true" //los puntitos de abajo para saber donde estamos
       >

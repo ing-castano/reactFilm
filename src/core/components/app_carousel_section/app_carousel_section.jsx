@@ -15,7 +15,14 @@ const AppCarousel = ({title, data}) => {
       </div>
       <AppSwiper>
         {data?.map((e) => (
-          <AppSwiperSlide key={e.id} >
+          <AppSwiperSlide 
+            key={e.id} 
+              style={{
+                height: "250px",
+                display: "flex",
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}>
             <AppCard
               config = {{
                 image: {
@@ -29,7 +36,9 @@ const AppCarousel = ({title, data}) => {
             >
                 <AppCard.Header />
                 <AppCard.Body />
-                <AppCard.Footer />
+                <AppCard.Footer>
+                  <p className='text-center font-bold'>Play Trailer</p>
+                </AppCard.Footer>
             </AppCard>
           </AppSwiperSlide>
         ))}
