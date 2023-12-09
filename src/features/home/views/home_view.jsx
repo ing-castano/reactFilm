@@ -19,6 +19,7 @@ import AppCard from '../../../core/components/app_card/app_card';
 import AppModal from '../../../core/components/app_modal/app_modal';
 import { useModal } from '../../../core/components/app_modal/hook/use_modal';
 import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter, useDisclosure, Button} from "@nextui-org/react";
+import AppNextuiModal from '../../../core/components/app_nextui_modal/app_nextui_modal';
 
 
 const HomeView = () => {
@@ -27,10 +28,9 @@ const HomeView = () => {
   const { data: trendingM, error: trendingMError, isLoading: trendingMIsLoading, fetchData: fetchTrendingMovies } = useFetch(getTrendingMovies);
   const { data: topRatedM, error: topRatedMError, isLoading: topRatedMIsLoading, fetchData: fetchTopRatedMovies } = useFetch(getTopRatedMovies);
   const { data: upComingM, error: upComingMError, isLoading: upComingMIsLoading, fetchData: fetchUpComingMovies } = useFetch(getUpcomingMovies);
-  const { data: popularT, error: popularTError, isLoading: popularTIsLoadig, fetchData: fetchPopularTV } = useFetch(getPopularTv);
+  const { data: popularT, error: popularTError, isLoading: popularTIsLoading, fetchData: fetchPopularTV } = useFetch(getPopularTv);
   const { data: topRatedT, error: topRatedTError, isLoading: topRatedTIsLoading, fetchData: fetchTopRatedTV } = useFetch(getTopRatedTv);
   // const {isOpen, openModal, closeModal} = useModal(); // Modal a Mano
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
 
   useEffect(() => {
@@ -45,9 +45,9 @@ const HomeView = () => {
   
   return (
     <>
-      <Banner
-        movies = { trendingM }
-      />
+      <NavBar />
+      
+      <Banner movies = { trendingM } />
 
       <NewReleases
         title = {"Next Upcoming..."} 
@@ -74,15 +74,15 @@ const HomeView = () => {
         data = {topRatedT}
       />
 
-
+      { /* //Diseño de Componente Propio pasando props
       <AppButton onClick={ () => {
         alert("Hola")
       }}>
         Mostrar Alerta
       </AppButton>
-      <button onClick={logout}>Logout</button>
-
-      {/* Modal a Mano
+      */
+      }
+      {/* // Modal a Mano
       <button onClick={openModal}>Abrir Modal</button>
       <AppModal 
         open={isOpen}
@@ -102,56 +102,7 @@ const HomeView = () => {
       </AppModal>
       */}
 
-      <Button onPress={onOpen}>Open Modal</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='2xl' scrollBehavior='inside' backdrop='blur'>
-        <ModalContent className='text-blue-200 bg-cyan-100'>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-              <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
       
-      <h1>{
-        console.log(import.meta.env.VITE_TEST)}
-        {import.meta.env.VITE_TEST
-        }
-      </h1>
 
     </>
   )

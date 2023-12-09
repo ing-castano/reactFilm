@@ -12,7 +12,7 @@ const useHover = () => {
         onMouseLeave: handleMouseLeave,
     }
 
-    return [isHovered, bind];
+    return [isHovered, bind, setIsHovered];
     
 
 }

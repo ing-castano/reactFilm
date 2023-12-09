@@ -12,5 +12,6 @@ export const tmdbAdpater = (response) => {
         description: item.overview,
         rating: item.vote_average,
         video: item.video,
+        date: item?.first_air_date ? item?.first_air_date  : item.release_date ,
     }))
 };

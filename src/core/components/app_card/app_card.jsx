@@ -5,7 +5,7 @@ import Footer from './components/footer';
 import { SwiperSlide } from 'swiper/react';
 import { Provider } from './provider/card_context';
 import useHover from './hooks/useHover';
-
+import { Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter, useDisclosure, Button, Chip} from "@nextui-org/react";
 
 
 const image = {
@@ -14,16 +14,26 @@ const image = {
   alt: "",
 }
 
+const movie = {
+  title: 'title',
+  description: 'text',
+  backdrop: 'url',
+  rating: 0,
+  date: '0000-00-00',
+}
+
 const defaultConfig = {
-  image,
+  image: image,
   width: '150px',
   height: '200px',
+  movie: movie,
 }
 
 
 const AppCard = ({children, config=defaultConfig, ...props}) => {
 
-  const [isHovered, handlers] = useHover();
+  const [isHovered, handlers, setIsHovered] = useHover();
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <Provider
@@ -50,10 +60,11 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
           ...props.style,
         }}
       >
-        {config?.image?.show && (
+        {config?.image?.show  && (
           <img 
             src={config.image.src}
             alt={config.image.alt}
+            onClick={()=>{onOpen(); setIsHovered(false);}}
             style={{
               position: 'absolute',
               width: '100%',
@@ -66,7 +77,42 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
             }}
           />
         )}
-        {children}
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='lg' scrollBehavior='inside' backdrop='blur'>
+          <ModalContent className='text-white bg-black'>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">{config?.movie?.title}</ModalHeader>
+                <ModalBody>
+                  <div className='h-64 w-auto relative p-2'>
+                    <img className=" absolute top-0 left-0 z-[-1]" src={config?.movie?.backdrop} alt={config?.movie?.title}></img>
+                    <div className=' h-60 flex flex-col justify-between'>
+                      <div className='flex flex-row justify-between '>
+                        <Chip size="md" className='p-2'> ⭐️ {config?.movie?.rating} </Chip>
+                        {config?.movie?.rating > 8 && (
+                          <Chip className='p-2' size="sm" color="warning" variant="shadow">Recommended</Chip>
+                        )}
+                      </div>
+                      <div className='flex flex-row justify-between '>
+                        <Chip size="sm" className='p-2'> {config?.movie?.date} </Chip>                    
+                      </div>
+                    </div>
+                  </div>
+                  <p>{config?.movie?.description}</p>
+                </ModalBody>
+                <ModalFooter className='flex justify-center '>
+                  <Button 
+                  variant="shadow"
+                  size='lg'
+                  className="bg-gradient-to-br from-red-700 to-pink-500 border-small border-white/50 shadow-pink-500/30 drop-shadow text-white"
+                  onPress={onClose}>
+                    Play
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+          {children}
       </article>
     </Provider>
   );

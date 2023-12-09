@@ -19,9 +19,8 @@ const Banner = ({movies}) => {
         <div 
           style={{backgroundImage: `url(${movies[id].backdrop})`}}
           className={"w-full h-[720px] mb-24 flex flex-col bg-cover bg-center brightness-75"}>
-          <NavBar>
-          </NavBar>
-          <div className='flex flex-col grow filter-none'>
+          
+          <div className='mt-24 flex flex-col grow filter-none'>
             <div className='flex'>
               <div id="NSeries" className='flex grow-0 text-red-700 text-8xl font-bold items-center'>
                 <p>N</p>
