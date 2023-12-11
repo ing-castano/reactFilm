@@ -4,12 +4,22 @@ import { TMDB_PATHS } from '../../datasources/remotes/tmdb/tmdb_paths';
 import config from '../../datasources/remotes/tmdb/tmdb_config';
 import NavBar from '../../../core/components/NavBar';
 import { Button } from '@nextui-org/react';
+import AppTrailerModal from '../app_trailer_modal/app_trailer_modal';
 
 
 
 const Banner = ({movies}) => {
 
  const id = randomNumberService(movies.length);
+ const [trailerIsOpen, SetTrailerIsOpen] = useState(false);
+
+ const handleTrailerModal = () => {
+  SetTrailerIsOpen(true);
+
+ }
+ const handleInfoModal = () => {
+  
+ }
 
   return (
 
@@ -40,10 +50,11 @@ const Banner = ({movies}) => {
                 id="buttons"
                 className='flex w-1/4 p-3 justify-evenly '>
                 <div id="btnPlay" className=''>
-                  <Button size="lg" >Play Trailer</Button>
+                  <Button size="lg" onPress={handleTrailerModal} >Play Trailer</Button>
+                  {trailerIsOpen && (<AppTrailerModal />)}
                 </div>
                 <div id="btnMoreInfo" className="">
-                  <Button size="lg">More Info</Button>
+                  <Button size="lg" onPress={handleInfoModal}>More Info</Button>
                 </div>
               </div>
             </div>

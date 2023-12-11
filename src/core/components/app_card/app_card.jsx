@@ -32,6 +32,7 @@ const defaultConfig = {
   width: '150px',
   height: '200px',
   movie: movie,
+  content: 'content',
 }
 
 
@@ -40,7 +41,7 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
   const [isHovered, handlers, setIsHovered] = useHover();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const {isOpen: isOpenTrailer, onOpen: onOpenTrailer, onOpenChange: onOpenChangeTrailer} = useDisclosure();
-  const { data: trailer, error: trailerError, isLoading: trailerIsLoading, fetchData: fetchGetTrailer } = useFetch(getTrailer, config?.movie?.id);
+  const { data: trailer, error: trailerError, isLoading: trailerIsLoading, fetchData: fetchGetTrailer } = useFetch(getTrailer, config?.movie?.id, config?.content);
  
 
   return (
@@ -112,7 +113,7 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
                   variant="shadow"
                   size='lg'
                   className="bg-gradient-to-br from-red-700 to-rose-500 border-small border-white/50 shadow-pink-500/30 drop-shadow text-white"
-                  onPress={()=>{onOpenTrailer();fetchGetTrailer();}}>
+                  onPress={()=>{onOpenTrailer();fetchGetTrailer();console.log("hola");}}>
                     <PlayIcon /> Watch! 
                       <Modal isOpen={isOpenTrailer} onOpenChange={onOpenChangeTrailer} size='full' scrollBehavior='outside'>
                         <ModalContent className='text-white bg-black'>
@@ -120,8 +121,6 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
                             <>
                               <ModalHeader />
                               <ModalBody>
-                                {config?.movie?.id}
-                                {console.log(trailer)}
                                 {trailer[0]?.key && (<AppYoutubePlayer videoId={trailer[0]?.key} onClose={onClose}/>)}
                               </ModalBody>
                               <ModalFooter />

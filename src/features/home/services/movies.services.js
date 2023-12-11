@@ -80,9 +80,16 @@ export const getAiringTv = async (query) => {
     return  tmdbAdpater(data);
 };
 
-export const getTrailer = async (movie_id) => {
+export const getTrailer = async (movie_id, content) => {
 
-    const response = await TMDB_API.get(`${TMDB_PATHS.movies.video}/${movie_id}/videos`, {
+    if( content == 'movie') {
+        var url = `${TMDB_PATHS.movies.video}/${movie_id}/videos`;
+    }
+    else if (content == 'tv') {
+        var url = `${TMDB_PATHS.tv.video}/${movie_id}/videos`;
+    }
+
+    const response = await TMDB_API.get(url, {
         params: {
             language: 'en-US',
         }

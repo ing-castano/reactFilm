@@ -39,7 +39,8 @@ const AppCarousel = ({title, data, content}) => {
                   backdrop: `${e.backdrop}`,
                   rating: `${e.rating}`,
                   date: `${e.date}`,
-                }
+                },
+                content: `${content}`,
               }}
             >
                 <AppCard.Header />

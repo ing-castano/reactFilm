@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useFetch = (service, query) => {
+const useFetch = (service, query, content) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ const useFetch = (service, query) => {
 
             setError(null);
             setIsLoading(true);
-            const response = await service(query);
+            const response = await service(query, content);
             setData(response);
         } catch (error) {
             setError(error);

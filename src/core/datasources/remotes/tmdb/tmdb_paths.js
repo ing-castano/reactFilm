@@ -11,6 +11,7 @@ export const TMDB_PATHS = {
         upcoming: '/movie/upcoming',
     },
     tv: {
+        video: '/tv',
         popular: '/tv/popular',
         top_rated: '/tv/top_rated',
         airing_today: '/tv/airing_today',
