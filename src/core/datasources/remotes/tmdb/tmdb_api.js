@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {API_URL, API_KEY, API_VERSION, API_IMG_URL} from './tmdb_config'
+import {API_URL, API_KEY, API_VERSION, API_IMG_URL} from '../tmdb/tmdb_config'
 
 export const TMDB_API = axios.create({
     baseURL: `${API_URL}${API_VERSION}`,
