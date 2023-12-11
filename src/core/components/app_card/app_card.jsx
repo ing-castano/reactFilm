@@ -113,7 +113,7 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
                   variant="shadow"
                   size='lg'
                   className="bg-gradient-to-br from-red-700 to-rose-500 border-small border-white/50 shadow-pink-500/30 drop-shadow text-white"
-                  onPress={()=>{onOpenTrailer();fetchGetTrailer();console.log("hola");}}>
+                  onPress={()=>{onOpenTrailer();fetchGetTrailer();}}>
                     <PlayIcon /> Watch! 
                       <Modal isOpen={isOpenTrailer} onOpenChange={onOpenChangeTrailer} size='full' scrollBehavior='outside'>
                         <ModalContent className='text-white bg-black'>
