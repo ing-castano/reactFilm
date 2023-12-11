@@ -57,21 +57,25 @@ const HomeView = () => {
       <AppCarousel
         title = {"Top Rated Movies"} 
         data = {topRatedM}
+        content = {'movie'}
       />
 
       <AppCarousel
         title = {"Trending Movies"} 
         data = {trendingM}
+        content = {'movie'}
       />
 
       <AppCarousel
         title = {"Popular Tv Shows"} 
         data = {popularT}
+        content = {'tv'}
       />
 
       <AppCarousel
         title = {"Top Rated Tv Shows"} 
         data = {topRatedT}
+        content = {'tv'}
       />
 
       { /* //Diseño de Componente Propio pasando props

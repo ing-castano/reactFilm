@@ -5,7 +5,7 @@ import AppSectionHeadings from '../app_section_headings/app_section_headings'
 import AppCardTitle from '../app_card_title/app_card_title'
 import AppCard from '../app_card/app_card'
 
-const AppCarousel = ({title, data}) => {
+const AppCarousel = ({title, data, content}) => {
   return (
     <div>
       <div>
@@ -33,6 +33,7 @@ const AppCarousel = ({title, data}) => {
                 width: '150px',
                 height: '200px',
                 movie: {
+                  id: `${e.id}`,
                   title: `${e.title}`,
                   description: `${e.description}`,
                   backdrop: `${e.backdrop}`,

@@ -15,3 +15,14 @@ export const tmdbAdpater = (response) => {
         date: item?.first_air_date ? item?.first_air_date  : item.release_date ,
     }))
 };
+
+export const tmdbTrailerAdapter = (response) => {
+    const {results} = response;
+    return results.map((item)=>({
+        id: item.id,
+        key: item.key,
+        type: item.type,
+        site: (item.site == "Youtube") ? "https://www.youtube.com/watch?v=" : item.site,
+    })).filter((item)=>(item.type == 'Trailer' || item.type == 'Clip') );
+
+};

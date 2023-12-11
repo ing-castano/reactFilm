@@ -1,5 +1,6 @@
 export const TMDB_PATHS = {
     movies: {
+        video: '/movie',
         test: '/movie/11',
         search: '/search/movie',
         discover: '/discover/movie',

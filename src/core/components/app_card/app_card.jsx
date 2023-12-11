@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect} from 'react'
 import Header from './components/header';
 import Body from './components/body';
 import Footer from './components/footer';
@@ -6,6 +6,10 @@ import { SwiperSlide } from 'swiper/react';
 import { Provider } from './provider/card_context';
 import useHover from './hooks/useHover';
 import { Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter, useDisclosure, Button, Chip} from "@nextui-org/react";
+import PlayIcon from '../app_icons/app_play/app_play';
+import useFetch from '../../hooks/useFetch';
+import { getTrailer } from '../../../features/home/services/movies.services';
+import AppYoutubePlayer from '../app_youtube_player/app_youtube_player';
 
 
 const image = {
@@ -15,6 +19,7 @@ const image = {
 }
 
 const movie = {
+  id: 22,
   title: 'title',
   description: 'text',
   backdrop: 'url',
@@ -34,6 +39,9 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
 
   const [isHovered, handlers, setIsHovered] = useHover();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const {isOpen: isOpenTrailer, onOpen: onOpenTrailer, onOpenChange: onOpenChangeTrailer} = useDisclosure();
+  const { data: trailer, error: trailerError, isLoading: trailerIsLoading, fetchData: fetchGetTrailer } = useFetch(getTrailer, config?.movie?.id);
+ 
 
   return (
     <Provider
@@ -64,7 +72,7 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
           <img 
             src={config.image.src}
             alt={config.image.alt}
-            onClick={()=>{onOpen(); setIsHovered(false);}}
+            onClick={onOpen}
             style={{
               position: 'absolute',
               width: '100%',
@@ -77,7 +85,7 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
             }}
           />
         )}
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='lg' scrollBehavior='inside' backdrop='blur'>
+        <Modal isOpen={isOpen} onOpenChange={()=>{onOpenChange(); setIsHovered(false)}} size='lg' scrollBehavior='inside' backdrop='blur'>
           <ModalContent className='text-white bg-black'>
             {(onClose) => (
               <>
@@ -103,11 +111,27 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
                   <Button 
                   variant="shadow"
                   size='lg'
-                  className="bg-gradient-to-br from-red-700 to-pink-500 border-small border-white/50 shadow-pink-500/30 drop-shadow text-white"
-                  onPress={onClose}>
-                    Play
+                  className="bg-gradient-to-br from-red-700 to-rose-500 border-small border-white/50 shadow-pink-500/30 drop-shadow text-white"
+                  onPress={()=>{onOpenTrailer();fetchGetTrailer();}}>
+                    <PlayIcon /> Watch! 
+                      <Modal isOpen={isOpenTrailer} onOpenChange={onOpenChangeTrailer} size='full' scrollBehavior='outside'>
+                        <ModalContent className='text-white bg-black'>
+                          {(onClose) => (
+                            <>
+                              <ModalHeader />
+                              <ModalBody>
+                                {config?.movie?.id}
+                                {console.log(trailer)}
+                                {trailer[0]?.key && (<AppYoutubePlayer videoId={trailer[0]?.key} onClose={onClose}/>)}
+                              </ModalBody>
+                              <ModalFooter />
+                            </>
+                          )}
+                        </ModalContent>
+                      </Modal>
                   </Button>
                 </ModalFooter>
+                
               </>
             )}
           </ModalContent>

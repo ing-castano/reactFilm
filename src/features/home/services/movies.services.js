@@ -1,4 +1,4 @@
-import { tmdbAdpater } from "../../../core/adapters/tmdb_adapter";
+import { tmdbAdpater, tmdbTrailerAdapter } from "../../../core/adapters/tmdb_adapter";
 import { TMDB_PATHS } from "../../../core/datasources/remotes/tmdb/tmdb_paths";
 import { TMDB_API } from "../../../core/datasources/remotes/tmdb/tmdb_api";
 
@@ -78,4 +78,15 @@ export const getAiringTv = async (query) => {
     });
     const data = await response.data;
     return  tmdbAdpater(data);
+};
+
+export const getTrailer = async (movie_id) => {
+
+    const response = await TMDB_API.get(`${TMDB_PATHS.movies.video}/${movie_id}/videos`, {
+        params: {
+            language: 'en-US',
+        }
+    });
+    const data = await response.data;
+    return tmdbTrailerAdapter(data);
 };
