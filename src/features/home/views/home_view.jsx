@@ -4,7 +4,6 @@ import NavBar from '../../../core/components/NavBar';
 import NewReleases from '../../../core/components/NewReleases';
 import { TMDB_PATHS } from '../../../core/datasources/remotes/tmdb/tmdb_paths';
 import tmdbImgServices from '../../../core/services/tmdb_img_services';
-import config from '../../../core/datasources/remotes/tmdb/tmdb_config';
 import AppButton from '../../../core/components/app_button/app_button';
 import { AppSwiper } from '../../../core/components/app_swiper/app_swiper';
 import AppSwiperSlide from '../../../core/components/app_swiper/components/app_swiper_slide';
@@ -20,11 +19,15 @@ import AppModal from '../../../core/components/app_modal/app_modal';
 import { useModal } from '../../../core/components/app_modal/hook/use_modal';
 import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter, useDisclosure, Button} from "@nextui-org/react";
 import AppNextuiModal from '../../../core/components/app_nextui_modal/app_nextui_modal';
+import {API_URL, API_VERSION, API_KEY} from '../../../core/datasources/remotes/tmdb/tmdb_config';
 
 
 const HomeView = () => {
 
   const {isLoggedIn, login, logout} = useAuth();
+  console.log(`${API_URL}${API_VERSION}`);
+  console.log(`apikey=${API_KEY}`);
+
   const { data: trendingM, error: trendingMError, isLoading: trendingMIsLoading, fetchData: fetchTrendingMovies } = useFetch(getTrendingMovies);
   const { data: topRatedM, error: topRatedMError, isLoading: topRatedMIsLoading, fetchData: fetchTopRatedMovies } = useFetch(getTopRatedMovies);
   const { data: upComingM, error: upComingMError, isLoading: upComingMIsLoading, fetchData: fetchUpComingMovies } = useFetch(getUpcomingMovies);
@@ -32,6 +35,7 @@ const HomeView = () => {
   const { data: topRatedT, error: topRatedTError, isLoading: topRatedTIsLoading, fetchData: fetchTopRatedTV } = useFetch(getTopRatedTv);
   // const {isOpen, openModal, closeModal} = useModal(); // Modal a Mano
 
+  
 
   useEffect(() => {
     fetchTrendingMovies(); 
