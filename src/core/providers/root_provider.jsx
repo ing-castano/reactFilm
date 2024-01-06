@@ -1,5 +1,6 @@
 import React from 'react';
 import {AuthProvider} from '../../core/auth/providers/auth_provider';
+import FavoritesProvider from './favorites/favorites_provider';
 
 const RootProvider = ({children}) => {
   return (
@@ -10,7 +11,9 @@ const RootProvider = ({children}) => {
       </div>
       } // reemplazo la pantalla por el cargando cuando todavia las peticiones no estan listas.
     >
-        {children}
+        <FavoritesProvider>
+            {children}
+        </FavoritesProvider>
     </AuthProvider>
   )
 }

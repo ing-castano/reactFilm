@@ -4,8 +4,10 @@ import AppSwiperSlide from '../app_swiper/components/app_swiper_slide'
 import AppSectionHeadings from '../app_section_headings/app_section_headings'
 import AppCardTitle from '../app_card_title/app_card_title'
 import AppCard from '../app_card/app_card'
+import {useFavorites} from '../../hooks/useFavorites'
+import FavoriteIconHeart from '../app_icons/app_favorite_heart/app_favorite_heart'
 
-const AppCarousel = ({title, data, content}) => {
+const AppCarousel = ({title, data}) => {
   return (
     <div>
       <div>
@@ -39,11 +41,14 @@ const AppCarousel = ({title, data, content}) => {
                   backdrop: `${e.backdrop}`,
                   rating: `${e.rating}`,
                   date: `${e.date}`,
+                  content: `${e.content}`,
                 },
-                content: `${content}`,
               }}
+              
             >
-                <AppCard.Header />
+                <AppCard.Header >
+                  <FavoriteIconHeart movie={e} config />
+                </AppCard.Header>
                 <AppCard.Body />
                 <AppCard.Footer>
                   <p className='text-center font-bold'>Play Trailer</p>

@@ -25,6 +25,7 @@ const movie = {
   backdrop: 'url',
   rating: 0,
   date: '0000-00-00',
+  content: 'content',
 }
 
 const defaultConfig = {
@@ -32,7 +33,6 @@ const defaultConfig = {
   width: '150px',
   height: '200px',
   movie: movie,
-  content: 'content',
 }
 
 
@@ -41,7 +41,7 @@ const AppCard = ({children, config=defaultConfig, ...props}) => {
   const [isHovered, handlers, setIsHovered] = useHover();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const {isOpen: isOpenTrailer, onOpen: onOpenTrailer, onOpenChange: onOpenChangeTrailer} = useDisclosure();
-  const { data: trailer, error: trailerError, isLoading: trailerIsLoading, fetchData: fetchGetTrailer } = useFetch(getTrailer, config?.movie?.id, config?.content);
+  const { data: trailer, error: trailerError, isLoading: trailerIsLoading, fetchData: fetchGetTrailer } = useFetch(getTrailer, config?.movie?.id, config?.movie?.content);
  
 
   return (

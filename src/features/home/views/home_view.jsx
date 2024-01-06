@@ -19,6 +19,7 @@ import AppModal from '../../../core/components/app_modal/app_modal';
 import { useModal } from '../../../core/components/app_modal/hook/use_modal';
 import {  Modal,   ModalContent,   ModalHeader,   ModalBody,   ModalFooter, useDisclosure, Button} from "@nextui-org/react";
 import AppNextuiModal from '../../../core/components/app_nextui_modal/app_nextui_modal';
+import { useFavorites } from '../../../core/hooks/useFavorites';
 
 
 const HomeView = () => {
@@ -30,6 +31,7 @@ const HomeView = () => {
   const { data: popularT, error: popularTError, isLoading: popularTIsLoading, fetchData: fetchPopularTV } = useFetch(getPopularTv);
   const { data: topRatedT, error: topRatedTError, isLoading: topRatedTIsLoading, fetchData: fetchTopRatedTV } = useFetch(getTopRatedTv);
   // const {isOpen, openModal, closeModal} = useModal(); // Modal a Mano
+  const {favorites} = useFavorites();
 
   
 
@@ -57,26 +59,30 @@ const HomeView = () => {
       <AppCarousel
         title = {"Top Rated Movies"} 
         data = {topRatedM}
-        content = {'movie'}
       />
 
       <AppCarousel
         title = {"Trending Movies"} 
         data = {trendingM}
-        content = {'movie'}
       />
 
       <AppCarousel
         title = {"Popular Tv Shows"} 
         data = {popularT}
-        content = {'tv'}
       />
 
       <AppCarousel
         title = {"Top Rated Tv Shows"} 
         data = {topRatedT}
-        content = {'tv'}
       />
+
+      <AppCarousel
+        key={`favorites-${favorites.length}`}
+        title = {"Your Favorites Movies"} 
+        data = {favorites}
+      />
+
+      
 
       { /* //Diseño de Componente Propio pasando props
       <AppButton onClick={ () => {

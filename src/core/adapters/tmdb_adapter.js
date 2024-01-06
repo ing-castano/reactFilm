@@ -2,7 +2,7 @@ import config from  '../datasources/remotes/tmdb/tmdb_config';
 import { TMDB_PATHS } from '../datasources/remotes/tmdb/tmdb_paths';
 
 
-export const tmdbAdpater = (response) => {
+export const tmdbAdpater = (response, content) => {
     const {results} = response;
     return results.map((item)=>({
         id: item.id,
@@ -13,6 +13,7 @@ export const tmdbAdpater = (response) => {
         rating: item.vote_average,
         video: item.video,
         date: item?.first_air_date ? item?.first_air_date  : item.release_date ,
+        content: content,
     }))
 };
 

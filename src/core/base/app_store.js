@@ -5,19 +5,19 @@
 export class AppStorage {
 
     static async save(key, value) {
-        return await localStorage.setItem(key, JSON.stringify(value)); // si bien localStorage no es asincrono, el await lo dejamos porque en general la forma de manejar estos procedimiento en GENERAL es asíncorono, es decir devuelve una promesa.
+        return localStorage.setItem(key, JSON.stringify(value)); // si bien localStorage no es asincrono, el await lo dejamos porque en general la forma de manejar estos procedimiento en GENERAL es asíncorono, es decir devuelve una promesa.
     }
 
     static async get (key) {
-        return await localStorage.getItem(key);
+        return JSON.parse(localStorage.getItem(key));
     }
 
     static async remove (key) {
-        return await localStorage.removeItem(key);
+        return localStorage.removeItem(key);
     }
 
     static async clear () {
-        return await localStorage.clear();
+        return localStorage.clear();
     }
 }
 

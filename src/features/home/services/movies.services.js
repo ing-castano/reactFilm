@@ -10,7 +10,7 @@ export const getTrendingMovies = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'movie');
 };
 
 export const getPopularMovies = async (query) => {
@@ -21,7 +21,7 @@ export const getPopularMovies = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'movie');
 };
 
 export const getTopRatedMovies = async (query) => {
@@ -32,7 +32,7 @@ export const getTopRatedMovies = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'movie');
 };
 
 export const getUpcomingMovies = async (query) => {
@@ -43,7 +43,7 @@ export const getUpcomingMovies = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'movie');
 };
 
 
@@ -55,7 +55,7 @@ export const getPopularTv = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'tv');
 };
 
 export const getTopRatedTv = async (query) => {
@@ -66,7 +66,7 @@ export const getTopRatedTv = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'tv');
 };
 
 export const getAiringTv = async (query) => {
@@ -77,7 +77,7 @@ export const getAiringTv = async (query) => {
         }
     });
     const data = await response.data;
-    return  tmdbAdpater(data);
+    return  tmdbAdpater(data, 'tv');
 };
 
 export const getTrailer = async (movie_id, content) => {
